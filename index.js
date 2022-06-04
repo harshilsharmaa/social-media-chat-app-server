@@ -37,6 +37,7 @@ io.on("connection", (socket) => {
     socket.on("addUser", (userId)=>{
         addUser(userId, socket.id);
         io.emit("getUsers", users)
+        console.log("user added");
     })
 
     // Send and get message
@@ -72,7 +73,7 @@ io.on("connection", (socket) => {
             }
         }
 
-        user? updateLastSeen(): null;
+        updateLastSeen()
     })
 })
 
