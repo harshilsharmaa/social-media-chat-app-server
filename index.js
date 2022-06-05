@@ -58,15 +58,14 @@ io.on("connection", (socket) => {
     })
 
     // When disconnect
-    socket.on("disconnect", ()=>{
+    socket.on("disconnect", async()=>{
         const user = users.find((user)=>user.socketId === socket.id);
        removeUser(socket.id);
        io.emit("getUsers", users);
 
-        const updateLastSeen = async(req,res)=>{
-            try {
-                
 
+    //    Update user last seen
+            try {
                 console.log(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`)
 
                 const response = await axios.put(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`);
@@ -75,9 +74,6 @@ io.on("connection", (socket) => {
             } catch (error) {
                 console.log(error);
             }
-        }
-
-        updateLastSeen()
     })
 })
 
