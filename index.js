@@ -63,12 +63,11 @@ io.on("connection", (socket) => {
         try {
 
             const user = users.find((user)=>user.socketId === socket.id);
-            await axios.put(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`);
-            console.log(user)
+            //    Update user last seen
+            axios.put(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`);
             removeUser(socket.id);
             io.emit("getUsers", users);
 
-            //    Update user last seen
             
         } catch (error) {
             console.log("error ",error);
