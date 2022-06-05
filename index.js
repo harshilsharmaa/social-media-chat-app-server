@@ -66,7 +66,11 @@ io.on("connection", (socket) => {
         const updateLastSeen = async(req,res)=>{
             try {
                 
-                const res = await axios.put(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`);
+
+                console.log(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`)
+
+                const response = await axios.put(`${process.env.BACKEND_URL}/api/v1/lastseen/${user.userId}`);
+                console.log(response);
 
             } catch (error) {
                 console.log(error);
